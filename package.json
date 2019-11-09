@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Deepgmc/col2/issues"
   },
-  "homepage": "https://github.com/Deepgmc/col2#readme"
+  "homepage": "https://github.com/Deepgmc/col2#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  }
 }
