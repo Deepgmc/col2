@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class Login extends React.Component{
+class Register extends React.Component{
     render(){
         return(
             <div>
@@ -17,8 +17,13 @@ class Login extends React.Component{
                                 <input className="form-control" type="password" placeholder="password" />
                             </label>
                         </div>
+                        <div className="col-md-12 form-group">
+                            <label>Password repeat
+                                <input className="form-control" type="password" placeholder="password" />
+                            </label>
+                        </div>
                         <div className="col-md-12">
-                            <button type="submit" className="btn btn-success">Login</button>
+                            <button type="submit" className="btn btn-success">Register</button>
                         </div>
                     </div>
                 </form>
@@ -27,4 +32,4 @@ class Login extends React.Component{
     }
 }
 
-ReactDOM.render(<Login />, document.getElementById('login_content_container'))
+ReactDOM.render(<Register />, document.getElementById('register_content_container'))
