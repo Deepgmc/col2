@@ -1,6 +1,5 @@
-doctype html
-html
-    head
-    title Login form
-    body
-        div User: #{name}
+extends ./base.pug
+block scripts
+    script(src='login_js.js')
+block content
+    div#login_content_container Login Content

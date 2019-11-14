@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title Colony site
+        style
+            include ../public/css/bootstrap.css
+            include ../public/css/bootstrap-grid.css
+            include ../public/css/global.css
+    body
+        #head_container.row.border-bottom
+            div.col-md-2
+            div.col-md-8
+                h3 Header
+            div.col-md-2
+
+        #content_container.row
+            div.col-md-2
+            div.col-md-8.content_wrapper
+                block content
+            div.col-md-2
+
+        #footer.row
+            div.col-md-2
+            div.col-md-8.border-top
+                h3 Footer
+            div.col-md-2
+        block scripts

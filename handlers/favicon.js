@@ -1,3 +1,3 @@
 const favicon = require('koa-favicon')
 
-exports.init = app => app.use(favicon('public/favicon.ico'))
+exports.init = app => app.use(favicon('public/img/favicon.ico'))
