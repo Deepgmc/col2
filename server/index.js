@@ -6,7 +6,7 @@ const Koa = require('koa'),
 require('../handlers/favicon').init(app)
 require('../handlers/templates').init(app)
 require('../handlers/static').init(app)
-require('../handlers/passport').init(app)
+//require('../handlers/passport').init(app)
 //require('../handlers/bodyparser').init(app)
 
 
