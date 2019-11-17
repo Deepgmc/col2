@@ -1,4 +1,5 @@
-import mongoose from '../db'
+const mongoose = require('../db')
+const crypto = require('crypto')
 
 
 
@@ -18,14 +19,30 @@ const UserSchema = new mongoose.Schema({
             message: 'Невалидный email'
         }]
     },
+    passwordHash: {
+        type: String,
+        required: true
+    },
+    salt: {
+        type: String,
+        required: true
+    },
     data: {
 
+    }
     },
-    timestamps: true
-})
-
+    {
+        timestamps:
+            {
+                createdAt: 'created_at',
+                updatedAt: 'updated_at'
+            }
+    }
+)
 const User = mongoose.model('User', UserSchema)
+module.exports = User
 
+/*
 const admin = new User({
     name: 'admin',
     email: 'admin@admin.com'
@@ -38,4 +55,4 @@ User.remove()
 .catch(console.error)
 .finally(() => {
     mongoose.disconnect()
-})
+})*/
