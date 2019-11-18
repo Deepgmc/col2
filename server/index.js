@@ -6,11 +6,23 @@ const User = require('./schemas/User')
 require('../handlers/favicon').init(app)
 require('../handlers/templates').init(app)
 require('../handlers/static').init(app)
+
+require('../handlers/passport').init(app)
+require('../handlers/bodyparser').init(app)
+
+
+
+/***
+ * Добавить strategies/local
+ * post запросы на логин/логаут запускают функции паспорта
+ *
+ * */
+
+
+
+
+
 const router = require('koa-router')()
-//require('../handlers/passport').init(app)
-//require('../handlers/bodyparser').init(app)
-
-
 router.get('/', async (ctx, next) => {
     ctx.body = ctx.render('error.pug')
 })
