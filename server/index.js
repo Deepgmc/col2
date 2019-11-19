@@ -7,6 +7,7 @@ require('../handlers/favicon').init(app)
 require('../handlers/templates').init(app)
 require('../handlers/static').init(app)
 
+require('../handlers/session')
 require('../handlers/passport').init(app)
 require('../handlers/bodyparser').init(app)
 
@@ -30,16 +31,16 @@ router.get('/', async (ctx, next) => {
 router.get('/login', async (ctx, next) => {
     console.log('CONNECTION TO LOGIN');
 
-    const admin = new User({
+    /*const admin = new User({
         name: 'admin',
         email: 'admin2@admin.com'
     })
     await admin.save()
         .then(() => {console.log('Admin saved!')})
         .catch((err) => {console.log('Error saving admin', err)})
-    const user = await User.findOne({'name': 'admin'})
+    const user = await User.findOne({'name': 'admin'})*/
     ctx.body = ctx.render('login.pug', {
-        message: 'Admin email: ' + user.email
+        message: 'Login page'
     })
 })
 
