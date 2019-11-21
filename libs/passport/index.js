@@ -1,5 +1,5 @@
 const passport = require('koa-passport')
-const User = require('../../../server/schemas/User')
+const User = require('../../server/schemas/User')
 
 const localStrategy = require('./strategies/local')
 

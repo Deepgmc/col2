@@ -2,10 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 class Login extends React.Component{
+
+    submitHandler = () => {
+        console.log('asdsad');
+    }
+
     render(){
         return(
             <div>
-                <form method="post">
+                <form onSubmit={this.submitHandler} method="post">
                     <div className="row">
                         <div className="col-md-12 form-group">
                             <label>Email

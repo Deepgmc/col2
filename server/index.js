@@ -11,25 +11,33 @@ require('../handlers/session')
 require('../handlers/passport').init(app)
 require('../handlers/bodyparser').init(app)
 
-
-
-/***
- * Добавить strategies/local
- * post запросы на логин/логаут запускают функции паспорта
- *
- * */
-
-
-
+const passport = require('../libs/passport/index')
 
 
 const router = require('koa-router')()
+
 router.get('/', async (ctx, next) => {
-    ctx.body = ctx.render('error.pug')
+    ctx.body = ctx.render('login.pug', {
+        message: 'Index page!'
+    })
 })
 
-router.get('/login', async (ctx, next) => {
-    console.log('CONNECTION TO LOGIN');
+
+router.post('/register', (ctx, next) => {
+    //создаем пользователя
+    //добавить обработку ошибок
+    //авторизация отдельно!
+    console.log(ctx.request.body)
+})
+
+
+router.post('/login', (ctx, next) => {
+    console.log('CONNECTION TO LOGIN', ctx)
+    let a = passport.authenticate('local', {
+        successRedicrect: '/dfgdfg',
+        failureRedirect: '/asdasd'
+    })
+
 
     /*const admin = new User({
         name: 'admin',
@@ -38,10 +46,10 @@ router.get('/login', async (ctx, next) => {
     await admin.save()
         .then(() => {console.log('Admin saved!')})
         .catch((err) => {console.log('Error saving admin', err)})
-    const user = await User.findOne({'name': 'admin'})*/
+    const user = await User.findOne({'name': 'admin'})
     ctx.body = ctx.render('login.pug', {
         message: 'Login page'
-    })
+    })*/
 })
 
 
