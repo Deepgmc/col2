@@ -2,24 +2,32 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 class Register extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    handleSubmit = () => {
+        console.log('Email: ' + this.state.email + ' password: ' + this.state.password)
+    }
+
     render(){
         return(
             <div>
-                <form method="post">
+                <form method="post" action='/register' onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-md-12 form-group">
                             <label>Email
-                                <input className="form-control" type="text" placeholder="email" />
+                                <input className="form-control" type="text" onChange={this.handleEmailChange} placeholder="email" />
                             </label>
                         </div>
                         <div className="col-md-12 form-group">
                             <label>Password
-                                <input className="form-control" type="password" placeholder="password" />
-                            </label>
-                        </div>
-                        <div className="col-md-12 form-group">
-                            <label>Password repeat
-                                <input className="form-control" type="password" placeholder="password" />
+                                <input className="form-control" type="password" onChange={this.handlePasswordChange} placeholder="password" />
                             </label>
                         </div>
                         <div className="col-md-12">
@@ -29,6 +37,18 @@ class Register extends React.Component{
                 </form>
             </div>
         )
+    }
+
+    handleEmailChange = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handlePasswordChange = (e) => {
+        this.setState({
+            password: e.target.value
+        })
     }
 }
 

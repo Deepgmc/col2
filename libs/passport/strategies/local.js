@@ -8,17 +8,20 @@ module.exports = new LocalStrategy(
     },
     async function(email, password, done) {
         try {
-            const user = await User.findOne({email})
+            const user = await User.findOne({email: email})
             if(!user){
-                return done(null, false, {message: 'No such user'})
+                return done(null, false)
             }
             const isValidPassword = await user.checkPassword(password)
 
-            if(!isValidPassword)
-                return done(null, false, {message: 'Password incorrect'})
-            return done(null, false, {message: 'Welcome back!'})
+            if(!isValidPassword) {
+                return done(null, false)
+            }
+
+            return done(null, user)
+
         } catch(err){
-            console.log(err)
+            console.log('LOCAL CATCH', err)
             done(err)
         }
     }
