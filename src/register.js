@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+
 import Error from './components/error'
-import Success from './components/succ'
 
 class Register extends React.Component{
 
@@ -24,9 +24,9 @@ class Register extends React.Component{
     }
 
     render(){
-        let err, succ = null
-        if(this.state.errMessage.length > 0) err = <Error message={this.state.errMessage} />
-        if(this.state.succMessage.length > 0) err = <Success message={this.state.succMessage} />
+        let err = null
+        if(this.state.errMessage.length > 0) err = <Error isErr={true} message={this.state.errMessage} />
+        if(this.state.succMessage.length > 0) err = <Error isErr={false} message={this.state.succMessage} />
         return(
             <div>
                 {err}
@@ -56,6 +56,7 @@ class Register extends React.Component{
                         </div>
                     </div>
                 </form>
+                <a className="btn btn-warning mt-3" href="/login">Go to login page</a>
             </div>
         )
     }

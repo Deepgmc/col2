@@ -2,16 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 Error.propTypes = {
-    message: PropTypes.string
+    message: PropTypes.string,
+    isErr: PropTypes.bool
 }
 
 function Error(props) {
 
-    const {message} = props
+    const {message, isErr} = props
+
+    let alertClass = 'alert mt-2 '
+    alertClass += (isErr ? 'alert-danger' : 'alert-success')
 
     return (
         <div>
-            <div className="alert alert-danger mt-2" role="alert">
+            <div className={alertClass} role="alert">
                 {message}
             </div>
         </div>
