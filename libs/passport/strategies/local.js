@@ -18,6 +18,7 @@ module.exports = new LocalStrategy(
                 return done(null, false)
             }
 
+            //password/login is CORRECT - login and redirect to /
             return done(null, user)
 
         } catch(err){

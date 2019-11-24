@@ -7,6 +7,16 @@ exports.post = passport.authenticate('local', {
     successFlash: true
 })
 
+exports.get = (ctx) => {
+    if(ctx.isAuthenticated()){
+        ctx.redirect('/')
+    } else {
+        ctx.body = ctx.render('login.pug', {
+            pageName: 'Login page'
+        })
+    }
+}
+
 
 //ДЛЯ AJAX AUTH тут заготовки
 /*exports.post = async function(ctx) {

@@ -1,33 +1,54 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import Error from './components/error'
+import Success from './components/succ'
 
 class Register extends React.Component{
+
+    static propTypes = {
+        errMessage: PropTypes.string,
+        succMessage: PropTypes.string,
+        email: PropTypes.string,
+        password: PropTypes.string
+    }
 
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: ''
+            email: 'admin@admin.com',
+            password: '123123',
+            errMessage: '',
+            succMessage: ''
         }
     }
 
-    handleSubmit = () => {
-        console.log('Email: ' + this.state.email + ' password: ' + this.state.password)
-    }
-
     render(){
+        let err, succ = null
+        if(this.state.errMessage.length > 0) err = <Error message={this.state.errMessage} />
+        if(this.state.succMessage.length > 0) err = <Success message={this.state.succMessage} />
         return(
             <div>
+                {err}
                 <form method="post" action='/register' onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-md-12 form-group">
                             <label>Email
-                                <input className="form-control" type="text" onChange={this.handleEmailChange} placeholder="email" />
+                                <input className="form-control"
+                                       name="email"
+                                       value={this.state.email}
+                                       type="text" onChange={this.handleEmailChange}
+                                       placeholder="email" />
                             </label>
                         </div>
                         <div className="col-md-12 form-group">
                             <label>Password
-                                <input className="form-control" type="password" onChange={this.handlePasswordChange} placeholder="password" />
+                                <input className="form-control"
+                                       name="password"
+                                       value={this.state.password}
+                                       type="password"
+                                       onChange={this.handlePasswordChange}
+                                       placeholder="password" />
                             </label>
                         </div>
                         <div className="col-md-12">
@@ -37,6 +58,43 @@ class Register extends React.Component{
                 </form>
             </div>
         )
+    }
+
+    handleSubmit = (e) => {
+
+        const {email, password} = this.state
+
+        e.preventDefault()
+        //отправляем запрос регистрации аяксом
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            referrer: 'no-referrer'
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((resp) => {
+                if(resp.registerSuccess){
+                    this.setState({
+                        email: '',
+                        password : '',
+                        succMessage: resp.message
+                    })
+                } else {
+                    this.setState({
+                        email: '',
+                        password : '',
+                        errMessage: resp.message
+                    })
+                }
+            })
     }
 
     handleEmailChange = (e) => {

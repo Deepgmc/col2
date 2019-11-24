@@ -1,8 +1,6 @@
 const mongoose = require('../db')
 const crypto = require('crypto')
 
-const hashLength = 30
-
 const UserSchema = new mongoose.Schema({
         email: {
             type: String,
@@ -38,7 +36,7 @@ UserSchema.methods.setPassword = async function setPassword(password){
             throw new Error('Password must be more than 3 symbols')
         }
     }
-    this.salt = crypto.randomBytes(hashLength).toString('hex')
+    this.salt = crypto.randomBytes(30).toString('hex')
     this.passwordHash = await generatePassword(this.salt, password)
 }
 UserSchema.methods.checkPassword = async function(password) {
@@ -53,9 +51,11 @@ module.exports = User
 
 function generatePassword(salt, password) {
     return new Promise((resolve, reject) => {
+        const buffer = new Buffer(salt, 'binary')
+        console.log('SDFSDFSDFDSFDSF', password, buffer);
         crypto.pbkdf2(
-            password, salt,
-            3, hashLength, 'sha512',
+            password, buffer,
+            3, 30, 'sha512',
             (err, key) => {
                 if(err) return reject(err)
                 resolve(key.toString('hex'))

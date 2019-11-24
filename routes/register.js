@@ -1,24 +1,37 @@
 const User = require('../server/schemas/User')
 
 exports.get = async (ctx) => {
-    ctx.body = ctx.render('register.pug', {
-        pageName: 'Register page'
-    })
+    if(ctx.isAuthenticated()){
+        ctx.redirect('/login')
+    } else {
+        ctx.body = ctx.render('register.pug', {
+            pageName: 'Register page'
+        })
+    }
 }
 
 
 exports.post = async (ctx) => {
-    const email = ctx.request.body.email,
-        password = ctx.request.body.password
+    const email = ctx.request.body.email
+    const password = ctx.request.body.password
 
     try {
         const user = new User({
-            email: email
+            email: email,
+            salt: '',
+            passwordHash: ''
         })
         await user.setPassword(password)
         await user.save()
+        ctx.body = JSON.stringify({
+            registerSuccess: true,
+            message: 'Вы успешно зарегистрированы'
+        })
     } catch(e) {
-        console.log(e);
-        return 'register failed'
+        console.log('REGISTER CATCH!', e)
+        ctx.body = JSON.stringify({
+            registerSuccess: false,
+            message: 'Register catch!'
+        })
     }
 }
