@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import Error from './components/error'
+import Error from './components/error'//component show alert-errors/success messages at top
 
 class Register extends React.Component{
 
