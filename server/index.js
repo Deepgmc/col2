@@ -16,7 +16,7 @@ router.get('/', require('../routes/indexPage').get)
 
 //LOGIN
 router.get('/login', require('../routes/login').get)
-//ДОБАВИТЬ ОШИБКИ АУТЕНТИФИКАЦИИ
+//TODO ДОБАВИТЬ ОШИБКИ АУТЕНТИФИКАЦИИ
 router.post('/login', require('../routes/login').post)
 
 //REGISTER
