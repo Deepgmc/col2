@@ -11,15 +11,19 @@ require('../handlers/bodyparser').init(app)
 require('../handlers/passport').init(app)
 const router = require('koa-router')()
 
+//INDEX
 router.get('/', require('../routes/indexPage').get)
 
+//LOGIN
 router.get('/login', require('../routes/login').get)
 //ДОБАВИТЬ ОШИБКИ АУТЕНТИФИКАЦИИ
 router.post('/login', require('../routes/login').post)
 
+//REGISTER
 router.get('/register', require('../routes/register').get)
 router.post('/register', require('../routes/register').post)
 
+//LOGOUT
 router.get('/logout', async (ctx) => {
     ctx.logout()
     ctx.redirect('/')
