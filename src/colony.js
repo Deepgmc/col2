@@ -1,0 +1,1 @@
+console.log('COLONY MAIN JS');

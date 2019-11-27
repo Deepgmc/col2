@@ -22,7 +22,7 @@ module.exports = new LocalStrategy(
             return done(null, user)
 
         } catch(err){
-            console.log('LOCAL CATCH', err)
+            console.log('PASSPORT LOCAL CATCH', err)
             done(err)
         }
     }

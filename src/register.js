@@ -56,7 +56,7 @@ class Register extends React.Component{
                         </div>
                     </div>
                 </form>
-                <a className="btn btn-warning mt-3" href="/login">Go to login page</a>
+                <a className="mt-3" href="/login">Go to login page</a>
             </div>
         )
     }
@@ -68,33 +68,28 @@ class Register extends React.Component{
         e.preventDefault()
         //отправляем запрос регистрации аяксом
         fetch('/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            }),
-            referrer: 'no-referrer'
-        })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+                referrer: 'no-referrer'
+            })
             .then((response) => {
                 return response.json()
             })
             .then((resp) => {
-                if(resp.registerSuccess){
-                    this.setState({
+                const type = (resp.registerSuccess ? 'succ' : 'err')
+                const name = type + 'Message',
+                    newState = {
                         email: '',
-                        password : '',
-                        succMessage: resp.message
-                    })
-                } else {
-                    this.setState({
-                        email: '',
-                        password : '',
-                        errMessage: resp.message
-                    })
-                }
+                        password : ''
+                    }
+                newState[name] = resp.message
+                this.setState(newState)
             })
     }
 

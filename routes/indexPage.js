@@ -1,10 +1,10 @@
 exports.get = async (ctx) => {
     if(ctx.isAuthenticated()){
         ctx.body = ctx.render('game.pug', {
-            pageName: 'YAHOOOOO! Game page reached!!!'
+            pageName: 'Colony main header'
         })
     } else {
-        console.log('NOT LOGINED')
+        console.log('NOT LOGINED INDEX')
         ctx.body = ctx.render('login.pug')
     }
 }

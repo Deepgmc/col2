@@ -1,1 +1,0 @@
-alert('Game js alert')

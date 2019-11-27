@@ -14,6 +14,7 @@ const router = require('koa-router')()
 router.get('/', require('../routes/indexPage').get)
 
 router.get('/login', require('../routes/login').get)
+//ДОБАВИТЬ ОШИБКИ АУТЕНТИФИКАЦИИ
 router.post('/login', require('../routes/login').post)
 
 router.get('/register', require('../routes/register').get)

@@ -25,13 +25,16 @@ exports.post = async (ctx) => {
         await user.save()
         ctx.body = JSON.stringify({
             registerSuccess: true,
-            message: 'Вы успешно зарегистрированы'
+            message: 'Вы успешно зарегистрированы <a href="/login">Войти</a>'
         })
     } catch(e) {
-        console.log('REGISTER CATCH!', e)
+        let msg = 'Ошибка регистрации'
+        if(e.errors.email){
+            msg = e.errors.email.message
+        }
         ctx.body = JSON.stringify({
             registerSuccess: false,
-            message: 'Register catch!'
+            message: msg
         })
     }
 }

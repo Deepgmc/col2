@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
                 validator: function(val){
                     return /^[-.\w]+@([\w-]+\.)+[\w-]{2,12}$/.test(val)
                 },
-                message: 'Невалидный email'
+                message: 'Неверный формат email'
             }]
         },
         passwordHash: {
@@ -52,7 +52,6 @@ module.exports = User
 function generatePassword(salt, password) {
     return new Promise((resolve, reject) => {
         const buffer = new Buffer(salt, 'binary')
-        console.log('SDFSDFSDFDSFDSF', password, buffer);
         crypto.pbkdf2(
             password, buffer,
             3, 30, 'sha512',
