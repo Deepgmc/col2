@@ -27,8 +27,10 @@ router.post('/register', require('../routes/register').post)
 //API
 router.get('/api/get-user-data', async (ctx) => {
     if(ctx.isAuthenticated()){
-        console.log('GETUSERDATA');
-        ctx.body = ctx.state.user
+        ctx.body = {
+            '_id': ctx.state.user._id,
+            'email': ctx.state.user.email
+        }
     }
 })
 

@@ -1,0 +1,1 @@
+export const SET_NEW_DAY = 'SET_NEW_DAY'

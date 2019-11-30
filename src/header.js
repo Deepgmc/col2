@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class Header extends React.Component{
     static propTypes = {
-        user: PropTypes.object
+        user: PropTypes.string
     }
 
     constructor(props) {
@@ -15,18 +15,10 @@ class Header extends React.Component{
     }
 
     componentDidMount() {
-        fetch('/api/get-user-data', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                referrer: 'no-referrer'
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((resp) => {
-                this.setState({user: resp})
+        fetch('/api/get-user-data', {method: 'GET'})
+            .then((response) => {return response.json()})
+            .then((user) => {
+                this.setState({user: user})
             })
     }
 
