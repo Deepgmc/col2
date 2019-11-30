@@ -10,6 +10,7 @@ require('../handlers/session').init(app)
 require('../handlers/bodyparser').init(app)
 require('../handlers/passport').init(app)
 const router = require('koa-router')()
+const User = require('../server/schemas/User')
 
 //INDEX
 router.get('/', require('../routes/indexPage').get)
@@ -23,11 +24,20 @@ router.post('/login', require('../routes/login').post)
 router.get('/register', require('../routes/register').get)
 router.post('/register', require('../routes/register').post)
 
+//API
+router.get('/api/get-user-data', async (ctx) => {
+    if(ctx.isAuthenticated()){
+        console.log('GETUSERDATA');
+        ctx.body = ctx.state.user
+    }
+})
+
 //LOGOUT
 router.get('/logout', async (ctx) => {
     ctx.logout()
     ctx.redirect('/')
 })
+
 app.use(router.routes())
 
 

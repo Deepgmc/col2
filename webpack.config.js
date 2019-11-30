@@ -1,5 +1,4 @@
-let path = require('path');
-
+const path = require('path')
 const rules = [
     { test: /\.css$/,
         exclude: '/node_modules',
@@ -17,52 +16,57 @@ const rules = [
 ],
     watch = true,
     mode = 'development',
-    devtool = 'source-map'
+    devtool = 'source-map',
+    public_path = require('path').resolve(__dirname, 'public')
 
-
+const header = {
+    watch: true,
+    mode: mode,
+    devtool: devtool,
+    entry: path.resolve(__dirname, 'src') + '/header.js',
+    output: {
+        path: public_path,
+        filename: 'header.js',
+        publicPath: '/'
+    },
+    module: {rules}
+}
 const login = {
     watch: watch,
     mode: mode,
     devtool: devtool,
     entry: path.resolve(__dirname, 'src') + '/login.js',
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: public_path,
         filename: 'login.js',
         publicPath: '/'
     },
-    module: {
-        rules
-    }
+    module: {rules}
 }
 
 const register = {
     watch: true,
-    mode: 'development',
-    devtool: 'source-map',
+    mode: mode,
+    devtool: devtool,
     entry: path.resolve(__dirname, 'src') + '/register.js',
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: public_path,
         filename: 'register.js',
         publicPath: '/'
     },
-    module: {
-        rules
-    }
+    module: {rules}
 }
 const colony = {
     watch: true,
-    mode: 'development',
-    devtool: 'source-map',
+    mode: mode,
+    devtool: devtool,
     entry: path.resolve(__dirname, 'src') + '/colony.js',
-
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: public_path,
         filename: 'colony.js',
         publicPath: '/'
     },
-    module: {
-        rules
-    }
+    module: {rules}
 }
 
-module.exports = [login, register, colony]
+module.exports = [header, login, register, colony]
