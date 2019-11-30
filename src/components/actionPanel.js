@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
-import {SET_NEW_DAY} from '../../libs/constants'
+import {new_day_action} from '../actions'
 
 class ActionPanel extends React.Component{
 
@@ -25,16 +24,19 @@ class ActionPanel extends React.Component{
 
 
     handleNextDayButtonClick = () => {
-        this.props.dispatch({
-            type: SET_NEW_DAY
-        })
+        this.props.new_day_action()
     }
 }
-function mapStateToProps(store){
+function mapStateToProps(store){//запихнем кусок стора в пропсы текущего компонента
     return {
         isActive: !!store.game.date.currentDate
     }
 }
-const decorator = connect(mapStateToProps)
+
+const mapToDispatch = {//экшн креэйторы запихнем в коннекст, они будут доступны в props
+    new_day_action: new_day_action
+}
+
+const decorator = connect(mapStateToProps, mapToDispatch)
 
 export default decorator(ActionPanel)
