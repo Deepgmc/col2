@@ -6,9 +6,11 @@ import {new_day_action} from '../actions'
 class ActionPanel extends React.Component{
 
     static propTypes = {
-        isActive: PropTypes.bool
+        isActive: PropTypes.bool,
+        new_day_action: PropTypes.func.isRequired
     }
     render() {
+        console.log('action panel update');
         const {isActive} = this.props
         let content = null
 
@@ -27,16 +29,14 @@ class ActionPanel extends React.Component{
         this.props.new_day_action()
     }
 }
-function mapStateToProps(store){//запихнем кусок стора в пропсы текущего компонента
-    return {
-        isActive: !!store.game.date.currentDate
+
+export default connect(
+    (store) => { //запихнем кусок стора в пропсы текущего компонента
+        return {
+            isActive: !!store.game.date.currentDate
+        }
+    },
+    {//экшн креэйторы запихнем в коннекст, они будут доступны в props
+        new_day_action
     }
-}
-
-const mapToDispatch = {//экшн креэйторы запихнем в коннекст, они будут доступны в props
-    new_day_action: new_day_action
-}
-
-const decorator = connect(mapStateToProps, mapToDispatch)
-
-export default decorator(ActionPanel)
+)(ActionPanel)

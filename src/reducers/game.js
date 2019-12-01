@@ -1,7 +1,7 @@
 import {SET_NEW_DAY} from '../../libs/constants'
-export default (game = {
+export default (game = {//каждый редьюсер получает часть стора, не зная ничего о других частях
     date: {
-        currentDate: 1577863800 // 01.01.2020
+        currentDate: 1577863800 // 01.01.2020 - дефолтное значение для нового юзера
     }
 }, action) => {
     const {type} = action
