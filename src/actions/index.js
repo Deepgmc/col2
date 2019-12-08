@@ -8,7 +8,6 @@ export const new_day_action = () => {
 
 export const get_init_data = () => {
     return {
-        type: GET_INIT_DATA,
-        url: '/api/get-init-data'
+        type: GET_INIT_DATA
     }
 }

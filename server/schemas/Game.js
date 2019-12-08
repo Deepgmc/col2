@@ -6,8 +6,7 @@ const GameSchema = new mongoose.Schema({
             required: 'No user id at game object',
             unique: true
         },
-        currentDate: Number,
-        fields: []
+        currentDate: Number
     }
 )
 

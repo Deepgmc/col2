@@ -12,7 +12,6 @@ class Game extends React.Component {
 
     render() {
         const {game} = this.props
-        console.log('Game got game: ', game);
         return (
             <div>Game component render</div>
         )

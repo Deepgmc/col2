@@ -11,7 +11,6 @@ class ActionPanel extends React.Component{
     }
 
     render() {
-        console.log('Action panel render');
         const {currentDate} = this.props
         let content = null
 

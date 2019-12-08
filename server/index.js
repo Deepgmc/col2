@@ -43,10 +43,36 @@ router.get('/api/get-init-data', async (ctx) => {
         if(isNaN(parseFloat(user_game.currentDate))){
             ctx.throw(404, 'Cant find game object')
         }
-        //берем из базы реальное значение объекта Game для текущего юзера
+        // берем из базы реальное значение объекта Game для текущего юзера
+        // при первоначальном логине
         ctx.body = {
             currentDate: user_game.currentDate
         }
+    } else {
+        ctx.redirect('/login')
+    }
+})
+
+router.patch('/api/set-new-day', async (ctx) => {
+    if(ctx.isAuthenticated()){
+        const user_game = await Game.findOne({
+            userId: ctx.state.user._id
+        })
+        if(isNaN(parseInt(user_game.currentDate))){
+            ctx.throw(404, 'Cant find game object')
+        }
+        //обновляем игровую дату, сохраняем её текущему юзеру и возвращаем обратно на клиент
+        const newCurrentDate = parseInt(user_game.currentDate) + (3600 * 24)
+        user_game.currentDate = newCurrentDate
+        try{
+            await user_game.save()
+            ctx.body = {
+                currentDate: newCurrentDate
+            }
+        } catch (e) {
+            ctx.throw(500, 'Set new day server error occured')
+        }
+
     } else {
         ctx.redirect('/login')
     }

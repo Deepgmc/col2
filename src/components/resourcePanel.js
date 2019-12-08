@@ -10,7 +10,6 @@ class ResourcePanel extends React.Component {
     }
 
     render() {
-        console.log('Resource panel render');
         if(!this.props.currentDate) return null
         let {currentDate} = this.props
         currentDate = timestampToString(currentDate)
