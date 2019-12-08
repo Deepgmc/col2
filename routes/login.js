@@ -10,7 +10,7 @@ exports.get = (ctx) => {
         ctx.redirect('/')
     } else {
         ctx.body = ctx.render('login.pug', {
-            pageName: 'Login page'
+            pageName: 'Вход в игру'
         })
     }
 }

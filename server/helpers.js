@@ -1,0 +1,1 @@
+exports.initialTimestamp = foo => 1577863800

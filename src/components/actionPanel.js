@@ -6,16 +6,17 @@ import {new_day_action} from '../actions'
 class ActionPanel extends React.Component{
 
     static propTypes = {
-        isActive: PropTypes.bool,
+        currentDate: PropTypes.number,
         new_day_action: PropTypes.func.isRequired
     }
+
     render() {
-        console.log('action panel update');
-        const {isActive} = this.props
+        console.log('Action panel render');
+        const {currentDate} = this.props
         let content = null
 
-        if(isActive)
-            content = <button className="btn btn-success" onClick={this.handleNextDayButtonClick}>Next day</button>
+        if(!!currentDate)
+            content = <button className="btn btn-success" onClick={this.handleNextDayButtonClick}>Следующий день</button>
 
         return (
             <div>
@@ -33,7 +34,7 @@ class ActionPanel extends React.Component{
 export default connect(
     (store) => { //запихнем кусок стора в пропсы текущего компонента
         return {
-            isActive: !!store.game.date.currentDate
+            currentDate: store.game.currentDate
         }
     },
     {//экшн креэйторы запихнем в коннекст, они будут доступны в props

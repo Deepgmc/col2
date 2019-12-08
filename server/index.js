@@ -10,7 +10,8 @@ require('../handlers/session').init(app)
 require('../handlers/bodyparser').init(app)
 require('../handlers/passport').init(app)
 const router = require('koa-router')()
-const User = require('../server/schemas/User')
+//const User = require('../server/schemas/User')
+const Game = require('../server/schemas/Game')
 
 //INDEX
 router.get('/', require('../routes/indexPage').get)
@@ -24,6 +25,7 @@ router.post('/login', require('../routes/login').post)
 router.get('/register', require('../routes/register').get)
 router.post('/register', require('../routes/register').post)
 
+
 //API
 router.get('/api/get-user-data', async (ctx) => {
     if(ctx.isAuthenticated()){
@@ -33,6 +35,23 @@ router.get('/api/get-user-data', async (ctx) => {
         }
     }
 })
+router.get('/api/get-init-data', async (ctx) => {
+    if(ctx.isAuthenticated()){
+        const user_game = await Game.findOne({
+            userId: ctx.state.user._id
+        })
+        if(isNaN(parseFloat(user_game.currentDate))){
+            ctx.throw(404, 'Cant find game object')
+        }
+        //берем из базы реальное значение объекта Game для текущего юзера
+        ctx.body = {
+            currentDate: user_game.currentDate
+        }
+    } else {
+        ctx.redirect('/login')
+    }
+})
+
 
 //LOGOUT
 router.get('/logout', async (ctx) => {

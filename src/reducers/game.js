@@ -1,24 +1,17 @@
-import {SET_NEW_DAY} from '../../libs/constants'
-export default (game = {//каждый редьюсер получает часть стора, не зная ничего о других частях
-    date: {
-        currentDate: 1577863800 // 01.01.2020 - дефолтное значение для нового юзера
-    }
+import {SET_NEW_DAY, GET_INIT_DATA} from '../../libs/constants'
+export default (game = {
+    currentDate: null
 }, action) => {
-    const {type} = action
-
-
+    const {type, response_data} = action
 
     switch (type) {
         case SET_NEW_DAY:
-            const {date} = game
+            const {currentDate} = game
             return {
-                date: {
-                    currentDate: parseInt(date.currentDate) + (3600 * 24)
-                }
+                currentDate: parseInt(currentDate) + (3600 * 24)
             }
-            break
-        default:
-            return game
+        case GET_INIT_DATA:
+            return response_data
     }
     return game
 }

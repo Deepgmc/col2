@@ -1,7 +1,9 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import reducers from '../reducers'
-const store = createStore(reducers)
+import getGameDataMW from '../middlewares/getGameData'
 
-window.store = store
+const middlewares = applyMiddleware(getGameDataMW)
+
+const store = createStore(reducers, {}, middlewares)
 
 export default store

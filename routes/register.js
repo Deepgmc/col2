@@ -1,14 +1,6 @@
 const User = require('../server/schemas/User')
-
-exports.get = async (ctx) => {
-    if(ctx.isAuthenticated()){
-        ctx.redirect('/login')
-    } else {
-        ctx.body = ctx.render('register.pug', {
-            pageName: 'Register page'
-        })
-    }
-}
+const Game = require('../server/schemas/Game')
+//const {initialTimestamp} = require('../server/helpers')
 
 
 exports.post = async (ctx) => {
@@ -23,18 +15,44 @@ exports.post = async (ctx) => {
         })
         await user.setPassword(password)
         await user.save()
+
+        //тут нужно создать запись Game для этого юзера
+        //записать туда пустую сетку карты, разместить в центре посадочный модуль
+        //задать юзеру дату начала игры 1577863800 = 01.01.2020 - дефолтное значение для нового юзера
+        // в сетку придумать как добавлять здание. Наверное, нужен будет массив с типами зданий
+
+        const game = new Game({
+            userId: user._id,
+            currentDate: 1577863800
+        })
+        //await game.generateInitialField()
+        await game.save()
+
+
         ctx.body = JSON.stringify({
             registerSuccess: true,
-            message: 'Вы успешно зарегистрированы <a href="/login">Войти</a>'
+            message: 'Вы успешно зарегистрированы. Передите на страницу входа'
         })
     } catch(e) {
+        console.log('<<<<<<<<<<< REGISTER CATCH ERORR: ', e)
         let msg = 'Ошибка регистрации'
-        if(e.errors.email){
+        if(e.errors && e.errors.email){
             msg = e.errors.email.message
         }
         ctx.body = JSON.stringify({
             registerSuccess: false,
             message: msg
+        })
+    }
+}
+
+
+exports.get = async (ctx) => {
+    if(ctx.isAuthenticated()){
+        ctx.redirect('/login')
+    } else {
+        ctx.body = ctx.render('register.pug', {
+            pageName: 'Регистрация в Colony'
         })
     }
 }

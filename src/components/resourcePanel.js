@@ -6,16 +6,17 @@ import {timestampToString} from '../../helpers/timestampToString'
 
 class ResourcePanel extends React.Component {
     static propTypes = {
-        date: PropTypes.number
+        currentDate: PropTypes.number
     }
 
     render() {
-        console.log('Render resource panel');
-        let {date} = this.props
-        date = timestampToString(date)
+        console.log('Resource panel render');
+        if(!this.props.currentDate) return null
+        let {currentDate} = this.props
+        currentDate = timestampToString(currentDate)
         return (
             <div>
-                Today: {date}
+                Сегодня: {currentDate}
             </div>
         )
     }
@@ -23,7 +24,7 @@ class ResourcePanel extends React.Component {
 
 function mapStateToProps(store){
     return {
-        date: store.game.date.currentDate
+        currentDate: store.game.currentDate
     }
 }
 
