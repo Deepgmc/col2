@@ -8,6 +8,7 @@ class Fields extends React.Component {
 
     render() {
 
+        console.log('Fields render');
         const {fields} = this.props
 
         let content = null
