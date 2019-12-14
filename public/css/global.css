@@ -3,3 +3,17 @@
     border-left:1px solid lightgrey;
     border-right:1px solid lightgrey;
 }
+
+.cells__cnt{
+    width:512px !important;
+    height:512px !important;
+    border:1px solid grey;
+    padding: 5px;
+}
+.fields__cell{
+    display:inline-block;
+    width:100px !important;
+    height:100px !important;
+    padding:1px;
+    border:1px solid lightgrey;
+}

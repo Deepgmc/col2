@@ -1,4 +1,5 @@
 const mongoose = require('../db')
+const edifices = require('../../server/gameObjects/edifices')
 
 const GameSchema = new mongoose.Schema({
         userId: {
@@ -6,11 +7,23 @@ const GameSchema = new mongoose.Schema({
             required: 'No user id at game object',
             unique: true
         },
+        fields: {
+            type: mongoose.Schema.Types.Array,
+            required: true
+        },
+        resources: {
+            oxygen: mongoose.Schema.Types.Number,
+            water: mongoose.Schema.Types.Number,
+            food: mongoose.Schema.Types.Number
+        },
         currentDate: Number
     }
 )
 
 GameSchema.methods.generateInitialField = async function generateInitialField(){
+    this.resources.oxygen = 1000
+    this.resources.water = 100
+    this.resources.food = 100
     this.fields = [
         //line 0
         [
@@ -102,7 +115,10 @@ GameSchema.methods.generateInitialField = async function generateInitialField(){
         [
             {
                 coordinates : [2, 2],
-                edifice     : null,
+                edifice     : {
+                    level: 0,
+                    edifice: edifices.shuttle//ставим начальный модуль в центр карты
+                },
                 surface     : null
             }
         ],
@@ -119,15 +135,15 @@ GameSchema.methods.generateInitialField = async function generateInitialField(){
                 edifice     : null,
                 surface     : null
             }
-        ]
-            //line 3
-            [
+        ],
+        //line 3
+        [
             {
                 coordinates : [3, 0],
                 edifice     : null,
                 surface     : null
             }
-            ],
+        ],
         [
             {
                 coordinates : [3, 1],

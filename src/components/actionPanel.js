@@ -15,7 +15,7 @@ class ActionPanel extends React.Component{
         let content = null
 
         if(!!currentDate)
-            content = <button className="btn btn-success" onClick={this.handleNextDayButtonClick}>Следующий день</button>
+            content = <button className="btn btn-sm btn-light" onClick={this.handleNextDayButtonClick}>Следующий день</button>
 
         return (
             <div>
@@ -31,11 +31,12 @@ class ActionPanel extends React.Component{
 }
 
 export default connect(
-    (store) => { //запихнем кусок стора в пропсы текущего компонента
+    /*(store) => { //запихнем кусок стора в пропсы текущего компонента
         return {
             currentDate: store.game.currentDate
         }
-    },
+    },*/
+    null,
     {//экшн креэйторы запихнем в коннекст, они будут доступны в props
         new_day_action
     }

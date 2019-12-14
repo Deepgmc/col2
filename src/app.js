@@ -1,9 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-
-import ActionPanel from './components/actionPanel'
-import ResourcePanel from './components/resourcePanel'
 import Game from './components/game'
 import {get_init_data} from './actions';
 
@@ -15,9 +12,7 @@ class App extends React.Component{
     render(){
         return (
             <div>
-                <ResourcePanel />
                 <Game />
-                <ActionPanel isActive={true} />
             </div>
         )
     }

@@ -25,7 +25,7 @@ exports.post = async (ctx) => {
             userId: user._id,
             currentDate: 1577863800
         })
-        //await game.generateInitialField()
+        await game.generateInitialField()
         await game.save()
 
 

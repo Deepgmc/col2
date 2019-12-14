@@ -1,15 +1,13 @@
 import {SET_NEW_DAY, GET_INIT_DATA} from '../../libs/constants'
 export default (game = {
-    currentDate: null
+    currentDate: null,
+    fields: []
 }, action) => {
     const {type, response_data} = action
 
     switch (type) {
         case SET_NEW_DAY:
-            const {currentDate} = game
-            return {
-                currentDate: parseInt(currentDate) + (3600 * 24)
-            }
+            return response_data
         case GET_INIT_DATA:
             return response_data
     }

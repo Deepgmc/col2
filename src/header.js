@@ -23,13 +23,13 @@ class Header extends React.Component{
     }
 
     render(){
-        let mail = <div>Not logined</div>
+        let mail = <div>Не авторизован</div>
         const {user} = this.state
         if(user) mail = <div>{this.state.user.email}</div>
         return(
             <div>
                 {mail}
-                <div><a href='/logout'>Exit</a></div>
+                <div><a href='/logout'>Выйти</a></div>
             </div>
         )
     }

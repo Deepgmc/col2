@@ -1,8 +1,7 @@
 exports.get = async (ctx, res) => {
     if(ctx.isAuthenticated()){
         ctx.body = ctx.render('game.pug', {
-            pageName: 'Colony main header',
-            user: ctx.state.user
+            pageName: 'Колония'
         })
     } else {
         console.log('NOT LOGINED INDEX')
