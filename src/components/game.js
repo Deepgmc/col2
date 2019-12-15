@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import ActionPanel from './actionPanel'
 import ResourcePanel from './resourcePanel';
-import Fields from './fields';
+import Fields from './Fields';
 
 class Game extends React.Component {
     static propTypes = {
@@ -15,7 +15,6 @@ class Game extends React.Component {
 
     render() {
         const {fields, currentDate, resources} = this.props
-        console.log('Game render, fields: ', fields);
         return (
             <div className="container-fluid">
                 <div className="row">
