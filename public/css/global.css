@@ -11,7 +11,6 @@
     padding: 5px;
 }
 .fields__cell{
-    display:inline-block;
     width:100px !important;
     height:100px !important;
     padding:1px;

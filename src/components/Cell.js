@@ -25,7 +25,6 @@ class Cell extends React.Component {
             <div className="fields__cell">
                 <div>{coordinates}</div>
                 <div>{edificeName}</div>
-                <div>{edificeDescription}</div>
             </div>
         )
     }

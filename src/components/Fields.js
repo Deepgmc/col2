@@ -27,7 +27,7 @@ class Fields extends React.Component {
             content = 'Неверный размер поля'
         }
         return (
-            <div className="cells__cnt">
+            <div className="cells__cnt d-flex flex-wrap">
                 {content}
             </div>
         )
