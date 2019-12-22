@@ -22,11 +22,22 @@ class Cell extends React.Component {
         }
 
         return (
-            <div className="fields__cell">
+            <div className="fields__cell" onClick={this.handleCellClick}>
                 <div>{coordinates}</div>
                 <div>{edificeName}</div>
             </div>
         )
+    }
+
+    handleCellClick = () => {
+        /*
+        * Добавить обработку клика -
+        * должен посылаться экшен, который обновит текущий компонент (добавит рамку вокруг выбранной ячейки
+        * затем, должна появиться инфа о выбранном здании в панели инфо снизу игровой области
+        * Надо определить - передавать объект выбранного здания через экшн payload
+        * или подхватывать где нужно массив всех зданий и находить нужное там, на месте
+        * */
+        console.log('Click to cell');
     }
 }
 
