@@ -9,7 +9,7 @@ class App extends React.Component{
         this.props.get_init_data()
     }
 
-    render(){
+    render(){//тест коммит из дома
         return (
             <div>
                 <Game />
