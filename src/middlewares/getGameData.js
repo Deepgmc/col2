@@ -1,5 +1,6 @@
 import {GET_INIT_DATA} from '../../libs/constants';
 
+/*
 export default store => next => action => {
     const {type} = action
     if(type === GET_INIT_DATA){
@@ -11,4 +12,4 @@ export default store => next => action => {
     } else {
         next({...action})
     }
-}
+}*/

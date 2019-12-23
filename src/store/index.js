@@ -1,9 +1,10 @@
 import {createStore, applyMiddleware} from 'redux'
 import reducers from '../reducers'
-import getGameDataMW from '../middlewares/getGameData'
+/*import getGameDataMW from '../middlewares/getGameData'*/
 import saveGameDataMW from '../middlewares/saveGameData'
+import thunk from 'redux-thunk';
 
-const middlewares = applyMiddleware(getGameDataMW, saveGameDataMW)
+const middlewares = applyMiddleware(thunk, /*getGameDataMW,*/ saveGameDataMW)
 
 const store = createStore(reducers, {}, middlewares)
 
