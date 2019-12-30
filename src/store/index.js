@@ -7,4 +7,6 @@ const middlewares = applyMiddleware(thunk, saveGameDataMW)
 
 const store = createStore(reducers, {}, middlewares)
 
+window.store = store
+
 export default store

@@ -5,23 +5,29 @@ import {FIELDS_X , FIELDS_Y} from '../../libs/constants'
 
 class Fields extends React.Component {
     static propTypes = {
-        fields: PropTypes.array
+        fields: PropTypes.array,
+        clickedCell: PropTypes.object
     }
 
     render() {
-
-        const {fields} = this.props
-        console.log('Fields.j: Fields Array', fields);
-
-        let content = null
+        const {fields, clickedCell} = this.props
+        let content, cName
 
         if(fields.length === FIELDS_X * FIELDS_Y){
             content = fields.map((cell, index) => {
+                cName = ''
                 const this_cell = cell[0]
-                //первая цифра ([0]) - линия (y), вторая цифра([1]) - столбец в линии (x)
+                //первая цифра ([0]) - линия(y), вторая цифра([1]) - столбец в линии(x)
                 const x = this_cell.coordinates[1],
-                     y = this_cell.coordinates[0]
-                return <Cell key={String(x) + '-' + String(y)} cell={this_cell} />
+                     y = this_cell.coordinates[0],
+                    id = String(x) + '-' + String(y)
+                let clickedCellId = null
+                if(clickedCell && clickedCell.coordinates){
+                    clickedCellId = String(clickedCell.coordinates[1]) + '-' + String(clickedCell.coordinates[0])
+                }
+
+                if(id === clickedCellId) cName = 'fields__cell_clicked'
+                return <Cell key={id} id={id} cell={this_cell} cName={cName} />
             })
         } else {
             content = 'Неверный размер поля'

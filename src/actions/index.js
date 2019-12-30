@@ -6,7 +6,6 @@ export const new_day_action = () => {
     }
 }
 
-
 export function get_init_data(){
     return (dispatch) => {
         fetch('/api/get-init-data', {method: 'GET'})
@@ -21,21 +20,13 @@ export function get_init_data(){
     }
 }
 
-
-
-
-
-
-export function cell_click(id){
-    console.log('action creator cel id');
+export function cell_click(cell){
     return (dispatch) => {
-        return {
+        dispatch({
             type: CELL_CLICK,
             payload: {
-                id: id
+                cell: cell
             }
-        }
+        })
     }
-
-
 }

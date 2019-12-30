@@ -31,11 +31,6 @@ class ActionPanel extends React.Component{
 }
 
 export default connect(
-    /*(store) => { //запихнем кусок стора в пропсы текущего компонента
-        return {
-            currentDate: store.game.currentDate
-        }
-    },*/
     null,
     {//экшн креэйторы запихнем в коннекст, они будут доступны в props
         new_day_action

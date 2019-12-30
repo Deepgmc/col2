@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import Game from './components/Game'
-import {get_init_data, cell_click} from './actions'
+import {get_init_data} from './actions'
 
 class App extends React.Component{
     componentDidMount() {
