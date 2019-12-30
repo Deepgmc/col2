@@ -1,6 +1,13 @@
 import {SET_NEW_DAY, GET_INIT_DATA, CELL_CLICK} from '../../libs/constants'
 
 export const new_day_action = () => {
+
+    /***
+     *
+     * TODO ПЕРЕДЕЛАТЬ НА THUNK
+     *
+     * **/
+
     return {
         type: SET_NEW_DAY
     }

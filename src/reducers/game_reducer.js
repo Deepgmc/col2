@@ -8,9 +8,9 @@ export default (game = {
 
     switch (type) {
         case SET_NEW_DAY:
-            return response_data
+            return {...response_data, clickedCell: {}}
         case GET_INIT_DATA:
-            return response_data
+            return {...response_data, clickedCell: {}}
         case CELL_CLICK:
             return {...game, clickedCell: payload.cell}
     }
