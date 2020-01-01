@@ -7,12 +7,12 @@ export default (game = {
     const {type, response_data, payload} = action
 
     switch (type) {
-        case SET_NEW_DAY:
-            return {...response_data, clickedCell: {}}
         case GET_INIT_DATA:
             return {...response_data, clickedCell: {}}
+        case SET_NEW_DAY:
+            return {...game, ...response_data}
         case CELL_CLICK:
-            return {...game, clickedCell: payload.cell}
+            return {...game}
     }
     return game
 }

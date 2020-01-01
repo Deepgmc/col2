@@ -75,9 +75,9 @@ router.patch('/api/set-new-day', async (ctx) => {
         try{
             await user_game.save()
             ctx.body = {
-                currentDate: newCurrentDate,
-                resources: user_game.resources,
-                fields: user_game.fields
+                currentDate     : newCurrentDate,
+                resources       : user_game.resources,
+                fields          : user_game.fields
             }
         } catch (e) {
             ctx.throw(500, 'Set new day server error occured')
