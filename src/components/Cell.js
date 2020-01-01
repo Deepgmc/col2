@@ -6,23 +6,22 @@ import {cell_click} from '../actions'
 
 class Cell extends React.Component {
     static propTypes = {
-        cell: PropTypes.object,
-        id: PropTypes.string, //id состоит из координат
-        cName: PropTypes.string //нажата ли ячейка
+        cell        : PropTypes.object,
+        gc          : PropTypes.object,
+        id          : PropTypes.string, //id состоит из координат
+        cName       : PropTypes.string //нажата ли ячейка
     }
 
     render() {
-        const {cell, cName} = this.props
-        const x = cell.coordinates[1],
-              y = cell.coordinates[0]
+        const {cell, cName, edifices} = this.props
         const edifice = cell.edifice
-        const coordinates = `${x}-${y}`
+        const coordinates = `${cell.coordinates[1]}-${cell.coordinates[0]}`
 
         let edificeName = 'No edifice',
             thisCName = 'fields__cell ' + cName
 
-        if(edifice){
-            edificeName = edifice.edifice.name
+        if(edifice && edifices){
+            edificeName = edifices[edifice.edifice].name
         }
 
         return (

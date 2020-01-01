@@ -5,21 +5,22 @@ import {connect} from 'react-redux'
 class InfoPanel extends React.Component{
 
     static propTypes = {
-        clickedCell: PropTypes.object,
+        clickedCell     : PropTypes.object,
+        edifices        : PropTypes.object,
     }
 
     render() {
-        const {clickedCell} = this.props
+        const {clickedCell, edifices} = this.props
         let content = null
 
-        if(clickedCell && clickedCell.edifice)
+        if(clickedCell && clickedCell.edifice && edifices)
             content =
                 <div>
                     <div>
-                        {clickedCell.edifice.edifice.name}
+                        {edifices[clickedCell.edifice.edifice].name}
                     </div>
                     <div>
-                        {clickedCell.edifice.edifice.description}
+                        {edifices[clickedCell.edifice.edifice].description}
                     </div>
                 </div>
 
@@ -34,9 +35,11 @@ class InfoPanel extends React.Component{
 export default connect(
     (store) => { //запихнем кусок стора в пропсы текущего компонента
         return {
-            clickedCell: store.game.clickedCell
+            clickedCell     : store.game.clickedCell,
+            edifices        : store.game.edifices
         }
     },
     {//экшн креэйторы запихнем в коннекст, они будут доступны в props
+
     }
 )(InfoPanel)

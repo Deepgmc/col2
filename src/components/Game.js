@@ -9,14 +9,15 @@ import Fields from './Fields';
 
 class Game extends React.Component {
     static propTypes = {
-        fields: PropTypes.array,
-        currentDate: PropTypes.number,
-        resources: PropTypes.object,
-        clickedCell: PropTypes.object
+        fields      : PropTypes.array,
+        currentDate : PropTypes.number,
+        resources   : PropTypes.object,
+        clickedCell : PropTypes.object,
+        gc          : PropTypes.object
     }
 
     render() {
-        const {fields, currentDate, resources, clickedCell} = this.props
+        const {fields, currentDate, resources, clickedCell, gc, edifices} = this.props
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -27,7 +28,12 @@ class Game extends React.Component {
                 <hr />
                 <div className="row">
                     <div className="col-md-8 g__fields_cnt">
-                        <Fields fields={fields} clickedCell={clickedCell}/>
+                        <Fields
+                            fields={fields}
+                            clickedCell={clickedCell}
+                            gc={gc}
+                            edifices={edifices}
+                        />
                     </div>
                     <div className="col-md-4 g__actions_cnt">
                         <ActionPanel isActive={true} currentDate={currentDate}/>
@@ -46,10 +52,12 @@ class Game extends React.Component {
 export default connect(
     (store) => { //запихнем кусок стора в пропсы текущего компонента
         return {
-            fields: store.game.fields,
-            resources: store.game.resources,
-            currentDate: store.game.currentDate,
-            clickedCell: store.game.clickedCell
+            fields          : store.game.fields,
+            resources       : store.game.resources,
+            currentDate     : store.game.currentDate,
+            clickedCell     : store.game.clickedCell,
+            gc              : store.game.gc,
+            edifices        : store.game.edifices
         }
     },
     {//экшн креэйторы запихнем в коннекст, они будут доступны в props

@@ -1,6 +1,5 @@
 const User = require('../server/schemas/User')
 const Game = require('../server/schemas/Game')
-//const {initialTimestamp} = require('../server/helpers')
 
 
 exports.post = async (ctx) => {
@@ -22,8 +21,7 @@ exports.post = async (ctx) => {
         // в сетку придумать как добавлять здание. Наверное, нужен будет массив с типами зданий
 
         const game = new Game({
-            userId: user._id,
-            currentDate: 1577863800
+            userId      : user._id
         })
         await game.generateInitialField()
         await game.save()

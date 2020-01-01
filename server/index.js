@@ -10,8 +10,9 @@ require('../handlers/session').init(app)
 require('../handlers/bodyparser').init(app)
 require('../handlers/passport').init(app)
 const router = require('koa-router')()
-//const User = require('../server/schemas/User')
 const Game = require('../server/schemas/Game')
+const global_constants = require('./global_constants')
+const edifices = require('./gameObjects/edifices')
 
 //INDEX
 router.get('/', require('../routes/indexPage').get)
@@ -46,9 +47,11 @@ router.get('/api/get-init-data', async (ctx) => {
         // берем из базы реальное значение объекта Game для текущего юзера
         // при первоначальном логине
         ctx.body = {
-            currentDate: user_game.currentDate,
-            resources: user_game.resources,
-            fields: user_game.fields
+            currentDate     : user_game.currentDate,
+            resources       : user_game.resources,
+            fields          : user_game.fields,
+            gc              : global_constants,
+            edifices        : edifices
         }
     } else {
         ctx.redirect('/login')
