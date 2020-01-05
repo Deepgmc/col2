@@ -1,4 +1,9 @@
-import {SET_NEW_DAY, GET_INIT_DATA, CELL_CLICK} from '../../libs/constants'
+import {
+    SET_NEW_DAY,
+    GET_INIT_DATA,
+    CELL_CLICK,
+    EDIFICE_BUTTON_CLICK
+} from '../../libs/constants'
 
 export const new_day_action = () => {
 
@@ -33,6 +38,18 @@ export function cell_click(cell){
             type: CELL_CLICK,
             payload: {
                 cell: cell
+            }
+        })
+    }
+}
+
+export function edifice_button_click(edifice_button){
+    console.log(edifice_button);
+    return (dispatch) => {
+        dispatch({
+            type: EDIFICE_BUTTON_CLICK,
+            payload: {
+                edifice_button: edifice_button
             }
         })
     }

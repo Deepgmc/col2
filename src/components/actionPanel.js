@@ -3,23 +3,41 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {new_day_action} from '../actions'
 
+import EdificeButton from './EdificeButton'
+
 class ActionPanel extends React.Component{
 
     static propTypes = {
-        currentDate: PropTypes.number,
-        new_day_action: PropTypes.func.isRequired
+        currentDate     : PropTypes.number,
+        new_day_action  : PropTypes.func.isRequired,
+        edifices        : PropTypes.object
     }
 
     render() {
-        const {currentDate} = this.props
-        let content = null
+        const {currentDate, edifices} = this.props
+        let nextDayBtncontent, edificesContent = null
+        let edificesButtons = []
 
         if(!!currentDate)
-            content = <button className="btn btn-sm btn-light" onClick={this.handleNextDayButtonClick}>Следующий день</button>
+            nextDayBtncontent = <button className="btn btn-sm btn-light" onClick={this.handleNextDayButtonClick}>Следующий день</button>
+
+        if(edifices){
+            for(let edifice_name in edifices){
+                edificesButtons.push(edifices[edifice_name])
+            }
+            edificesContent = edificesButtons.map((edifice) => {
+                return <EdificeButton
+                    key={edifice.id}
+                    edifice={edifice}
+                />
+            })
+        }
+
 
         return (
             <div>
-                {content}
+                {nextDayBtncontent}
+                {edificesContent}
             </div>
         )
     }

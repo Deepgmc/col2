@@ -1,4 +1,9 @@
-import {SET_NEW_DAY, GET_INIT_DATA, CELL_CLICK} from '../../libs/constants'
+import {
+    SET_NEW_DAY,
+    GET_INIT_DATA,
+    CELL_CLICK,
+    EDIFICE_BUTTON_CLICK
+} from '../../libs/constants'
 export default (game = {
     currentDate: null,
     fields: [],
@@ -12,6 +17,8 @@ export default (game = {
         case SET_NEW_DAY:
             return {...game, ...response_data}
         case CELL_CLICK:
+            return {...game, clickedCell: payload.cell}
+        case EDIFICE_BUTTON_CLICK:
             return {...game}
     }
     return game

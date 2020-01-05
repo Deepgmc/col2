@@ -13,7 +13,8 @@ class Game extends React.Component {
         currentDate : PropTypes.number,
         resources   : PropTypes.object,
         clickedCell : PropTypes.object,
-        gc          : PropTypes.object
+        gc          : PropTypes.object,
+        edifices    : PropTypes.object
     }
 
     render() {
@@ -36,7 +37,11 @@ class Game extends React.Component {
                         />
                     </div>
                     <div className="col-md-4 g__actions_cnt">
-                        <ActionPanel isActive={true} currentDate={currentDate}/>
+                        <ActionPanel
+                            isActive={true}
+                            currentDate={currentDate}
+                            edifices={edifices}
+                        />
                     </div>
                 </div>
                 <div className="row">

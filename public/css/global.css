@@ -26,3 +26,13 @@ body, html{
 .fields__cell_clicked{
     border:1px solid green;
 }
+
+.action_btn__edifice{
+    width:150px;
+    height:100px;
+    border:1px solid white;
+    padding:2px;
+    margin:2px;
+    cursor: pointer;
+    font-size:10px;
+}
